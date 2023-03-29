@@ -11,9 +11,10 @@ io.on('connection', socket => {
   })
 
   //socket.emit('chat-message', 'hello world')
-  socket.on('send-chat', data => {
+  socket.on('send-chat', (data,acknowledgment) => {
 
     socket.broadcast.emit('message-received', {data: data, user: users[socket.id]})
+    acknowledgment();
   })
 
   socket.on('disconnect', ()=> {

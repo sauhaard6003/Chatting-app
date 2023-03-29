@@ -28,7 +28,9 @@ messageForm.addEventListener('submit', e => {
   e.preventDefault()
   message = `${messageInput.value}`
   addMessage(`You: ${message}`)
-  socket.emit('send-chat', message)
+  socket.emit('send-chat', message, ()=>{
+    alert("message sent successfully"); //acknowledgement
+  })
   messageInput.value = ''
 
 })
